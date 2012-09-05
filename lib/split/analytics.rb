@@ -5,11 +5,17 @@ module Split
     def tracking_code(options={})
       # needs more options: http://code.google.com/apis/analytics/docs/gaJS/gaJSApi.html
       account = options.delete(:account)
+      if options.delete(:anonymize)
+        anonymize_ip = "_gaq.push(['_gat._anonymizeIp']);"
+      else
+        anonymize_ip = ""
+      end
 
       code = <<-EOF
         <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '#{account}']);
+          #{anonymize_ip}
           #{custom_variables}
           _gaq.push(['_trackPageview']);
           _gaq.push(['_trackPageLoadTime']);

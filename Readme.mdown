@@ -34,6 +34,11 @@ Use in your application layout template
     # haml
     = tracking_code(:account => 'UA-12345-6')
 
+## Options
+
+You can pass the `:anonymize => true` option to `tracking_code` to enable
+GA IP anonymization required in Germany.
+
 ## Development
 
 Source hosted at [GitHub](http://github.com/andrew/split-analytics).
